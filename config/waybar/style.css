@@ -1,0 +1,49 @@
+@define-color foreground #eeeeee;
+@define-color foreground-inactive #aaaaaa;
+@define-color background #000000;
+
+* {
+    font-family: ttf-font-awesome;
+    font-size: 11px;
+    padding: 0;
+    margin: 0;
+    min-height: 0;
+}
+
+window#waybar {
+    color: @foreground;
+    background-color: @background;
+    border: none;
+    box-shadow: none;
+}
+
+/* Workspaces */
+#workspaces button {
+    color: @foreground;
+    padding: 0 1px;
+    min-height: 0;
+}
+
+#workspaces button.empty {
+    color: @foreground-inactive;
+}
+
+/* Módulos individuais */
+#memory,
+#custom-platform-profile,
+#wireplumber,
+#battery,
+#idle_inhibitor,
+#language,
+#network,
+#bluetooth,
+#tray,
+#clock,
+#mpris {
+    padding: 0 5px;
+}
+
+/* MPRIS - controle básico apenas */
+#mpris {
+    padding: 0 8px;
+}

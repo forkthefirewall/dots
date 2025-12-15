@@ -1,0 +1,145 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 13,
+  "spacing": 1,
+
+  "modules-left": ["hyprland/workspaces", "mpris"],
+  "modules-center": ["clock", "custom/eye-care"],
+  "modules-right": [
+    "tray",
+    "wireplumber#mic",
+    "wireplumber",
+	"backlight",
+    "battery",
+    "network"
+  ],
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "format-icons": {
+      "active": "●",
+      "default": "○"
+    },
+    "max-length": 10
+  },
+  "clock": {
+    "format": "󰸗 {:%d.%m 󰥔 %H:%M}",
+    "tooltip-format": "{calendar}",
+    "calendar": {
+      "mode": "month",
+      "mode-mon-col": 6,
+      "format": {
+        "months": "<span alpha='100%'><b>{}</b></span>",
+        "days": "<span alpha='90%'>{}</span>",
+        "weekdays": "<span alpha='80%'><i>{}</i></span>",
+        "today": "<span alpha='100%'><b><u>{}</u></b></span>"
+      }
+    }
+  },
+
+  "wireplumber": {
+    "format": "{icon} {volume}%",
+    "format-muted": "{icon}{volume}%",
+    "format-icons": {
+      "default": ["󰕿", "󰖀", "󰕾"],
+      "default-muted": "󰝟",
+      "headphone": "󰋋",
+      "headphone-muted": "󰟎",
+      "headset": "󰋎",
+      "headset-muted": "󰋐"
+    },
+
+    // "scroll-step":
+    "on-click": "~/.config/waybar/scripts/volume.sh output mute",
+    // "on-click-middle":
+    // "on-click-right":
+    "on-scroll-up": "~/.config/waybar/scripts/volume.sh output raise",
+    "on-scroll-down": "~/.config/waybar/scripts/volume.sh output lower",
+    // "smooth-scrolling-threshold":
+    // "tooltip":
+    "tooltip-format": "Output Device: {desc}"
+  },
+
+  "wireplumber#mic": {
+    "format": "{format_source}",
+    "format-source": "󰍬 {volume}%",
+    "format-source-muted": "󰍭",
+    "on-click": "~/.config/waybar/scripts/volume.sh input mute",
+    "on-scroll-up": "~/.config/waybar/scripts/volume.sh input raise",
+    "on-scroll-down": "~/.config/waybar/scripts/volume.sh input lower",
+    "tooltip-format": "Input Device: {desc}"
+  },
+
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-time": "{H} hr {M} min",
+    "format-icons": ["󰂎", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-charging": "󰉁 {capacity}%",
+    "tooltip-format": "Discharging: {time}",
+    "tooltip-format-charging": "Charging: {time}"
+  },
+
+  "network": {
+    "interval": 10,
+    "format": "󰤨",
+    "format-ethernet": "󰈀",
+    "format-wifi": "{icon}",
+    "format-disconnected": "󰤯",
+    "format-disabled": "󰤮",
+    // "format-alt":
+    "format-icons": ["󰤟", "󰤢", "󰤥", "󰤨"],
+    // "rotate":
+    "on-click": "kitty -e ~/.config/waybar/scripts/network.sh",
+    // "on-click-middle":
+    "on-click-right": "nmcli radio wifi off && notify-send 'Wi-Fi Disabled' -i 'network-wireless-off' -r 1125",
+    // "on-scroll-up":
+    //a "on-scroll-down":
+    // "smooth-scrolling-threshold":// "tooltip":
+    "tooltip-format": "Gateway: {gwaddr}",
+    "tooltip-format-ethernet": "Interface: {ifname}",
+    "tooltip-format-wifi": "Network: {essid}\nIP Addr: {ipaddr}/{cidr}\nStrength: {signalStrength}%\nFrequency: {frequency} GHz",
+    "tooltip-format-disconnected": "Wi-Fi Disconnected",
+    "tooltip-format-disabled": "Wi-Fi Disabled"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", "", "", "", "", "", "", ""],
+    "tooltip": false,
+    "on-click": "brightnessctl set 10%+", // Clique para aumentar
+    "on-click-right": "brightnessctl set 10%-", // Clique direito para diminuir
+    "interval": 1
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 15
+  },
+
+  "mpris": {
+    "format": "{artist} - {title}",
+    "format-paused": "⏸ {artist} - {title}",
+    "format-stopped": "⏹ Nenhuma música",
+    "player-icons": {
+      "spotify": "",
+      "vlc": "",
+      "default": "🎵"
+    },
+    "on-click": "playerctl play-pause",
+    "on-click-right": "playerctl next",
+    "on-click-middle": "playerctl previous",
+    "interval": 1,
+    "max-length": 55,
+    "ellipsis": true,
+    "tooltip": true
+  },
+  "custom/eye-care": {
+    "format": "󰥟",
+    "tooltip": true,
+    "on-click": "hyprsunset -t 4000 -g 90",
+    "on-click-right": "hyprsunset -t 3000 -g 85",
+    "on-click-middle": "killall hyprsunset"
+  }
+}
